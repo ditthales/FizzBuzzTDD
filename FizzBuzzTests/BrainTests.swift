@@ -12,13 +12,13 @@ final class BrainTests: XCTestCase {
     
     let brain = Brain()
     
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+//    override func setUpWithError() throws {
+//        // Put setup code here. This method is called before the invocation of each test method in the class.
+//    }
+//
+//    override func tearDownWithError() throws {
+//        // Put teardown code here. This method is called after the invocation of each test method in the class.
+//    }
     
     func testIsDivisibleByThree() {
         XCTAssertTrue(brain.isDivisibleBy(divisor: 3, number: 9))
@@ -45,6 +45,26 @@ final class BrainTests: XCTestCase {
         
         XCTAssertTrue(brain.isDivisibleBy(divisor: 15, number: 15))
         XCTAssertFalse(brain.isDivisibleBy(divisor: 15, number: 10))
+    }
+    
+    func testSayFizz(){
+        let result = brain.check(number: 3)
+        XCTAssertEqual(result, "Fizz")
+    }
+    
+    func testSayBuzz(){
+        let result = brain.check(number: 5)
+        XCTAssertEqual(result, "Buzz")
+    }
+    
+    func testSayFizzBuzz(){
+        let result = brain.check(number: 15)
+        XCTAssertEqual(result, "FizzBuzz")
+    }
+    
+    func testIfNumberIsOne(){
+        let result = brain.check(number: 1)
+        XCTAssertEqual(result, "1")
     }
     
 
