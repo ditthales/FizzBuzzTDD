@@ -8,14 +8,87 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var viewModel: ContentViewModel
+    
+    init(viewModel: ContentViewModel = ContentViewModel()) {
+        self.viewModel = viewModel
+    }
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            Color(viewModel.colorBackground)
+            VStack {
+                HStack {
+                    Spacer()
+                    Text("3 / 5")
+                        .font(.title)
+                        .bold()
+                }
+                Spacer()
+                VStack (spacing: 25) {
+                    HStack (spacing: 25) {
+                        Button {
+                            viewModel.scorePressed()
+                        } label: {
+                            Text("0")
+                                .font(.system(size: 50))
+                                .frame(width: 65, height: 65)
+                                .padding()
+                                .border(.white, width: 4)
+                                .cornerRadius(5)
+                        }
+                        Button {
+                            viewModel.champagnePressed()
+                        } label: {
+                            Image("champagne")
+                                .frame(width: 65, height: 65)
+                                .padding()
+                                .border(.white, width: 4)
+                                .cornerRadius(5)
+                        }
+
+                    }
+                    HStack (spacing: 25) {
+                        Button {
+                            viewModel.lightningPressed()
+                        } label: {
+                            Image("lightning")
+                                .frame(width: 65, height: 65)
+                                .padding()
+                                .border(.white, width: 4)
+                                .cornerRadius(5)
+                        }
+                        Button {
+                            viewModel.spacePressed()
+                        } label: {
+                            Image("space")
+                                .frame(width: 65, height: 65)
+                                .padding()
+                                .border(.white, width: 4)
+                                .cornerRadius(5)
+                        }
+                        
+                    }
+                }
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button {
+                        viewModel.playAgainPressed()
+                    } label: {
+                        Text ("PLAY AGAIN")
+                            .font(.title3)
+                            .bold()
+                    }
+
+                }
+            }
+            .foregroundColor(.white)
+            .padding(50)
         }
-        .padding()
+        .ignoresSafeArea()
     }
 }
 

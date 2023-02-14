@@ -17,6 +17,8 @@
 		474240F4299AD568002A04EA /* FizzBuzzUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474240F3299AD568002A04EA /* FizzBuzzUITestsLaunchTests.swift */; };
 		47424101299AD594002A04EA /* BrainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47424100299AD594002A04EA /* BrainTests.swift */; };
 		47424103299AD5BA002A04EA /* Brain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47424102299AD5BA002A04EA /* Brain.swift */; };
+		C0F777E1299C1CF800668F03 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F777E0299C1CF800668F03 /* ContentViewModel.swift */; };
+		C0F777E3299C1ED100668F03 /* ContentViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F777E2299C1ED100668F03 /* ContentViewModelTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +52,8 @@
 		474240F3299AD568002A04EA /* FizzBuzzUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FizzBuzzUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		47424100299AD594002A04EA /* BrainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrainTests.swift; sourceTree = "<group>"; };
 		47424102299AD5BA002A04EA /* Brain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Brain.swift; sourceTree = "<group>"; };
+		C0F777E0299C1CF800668F03 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
+		C0F777E2299C1ED100668F03 /* ContentViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModelTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 				474240D8299AD567002A04EA /* ContentView.swift */,
 				474240DA299AD568002A04EA /* Assets.xcassets */,
 				474240DC299AD568002A04EA /* Preview Content */,
+				C0F777E0299C1CF800668F03 /* ContentViewModel.swift */,
 			);
 			path = FizzBuzz;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			children = (
 				47424100299AD594002A04EA /* BrainTests.swift */,
 				47240288299C03000033C125 /* GameTests.swift */,
+				C0F777E2299C1ED100668F03 /* ContentViewModelTests.swift */,
 			);
 			path = FizzBuzzTests;
 			sourceTree = "<group>";
@@ -279,6 +285,7 @@
 				47424103299AD5BA002A04EA /* Brain.swift in Sources */,
 				474240D7299AD567002A04EA /* FizzBuzzApp.swift in Sources */,
 				4724028E299C039B0033C125 /* Game.swift in Sources */,
+				C0F777E1299C1CF800668F03 /* ContentViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,6 +295,7 @@
 			files = (
 				47424101299AD594002A04EA /* BrainTests.swift in Sources */,
 				47240289299C03010033C125 /* GameTests.swift in Sources */,
+				C0F777E3299C1ED100668F03 /* ContentViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

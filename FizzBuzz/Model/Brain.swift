@@ -12,7 +12,7 @@ class Brain{
         return number % divisor == 0
     }
     
-    func check(number: Int) -> String?{
+    func check(number: Int) -> String {
         if isDivisibleBy(divisor: 15, number: number){
             return "FizzBuzz"
         }else if isDivisibleBy(divisor: 5, number: number){
