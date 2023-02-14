@@ -19,36 +19,33 @@ final class BrainTests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testIsDivisibleByThree(){
-        let result = brain.isDivisibleBy(divisor: 3, number: 3)
-        XCTAssertEqual(result, true)
-    }
     
-    func testIsntDivisibleByThree(){
-        let result = brain.isDivisibleBy(divisor: 3, number: 1)
-        XCTAssertEqual(result, false)
-    }
-    
-    func testIsDivisibleByFive(){
-        let result = brain.isDivisibleBy(divisor: 5, number: 5)
-        XCTAssertEqual(result, true)
-    }
-    
-    func testIsntDivisibleByFive(){
-        let result = brain.isDivisibleBy(divisor: 5, number: 1)
-        XCTAssertEqual(result, false)
-    }
-    
-    func testIsDivisibleByFiveAndThree(){
-        let result = brain.isDivisibleBy(divisor: 15, number: 15)
-        XCTAssertEqual(result, true)
-    }
-    
-    func testIsntDivisibleByFiveAndThree(){
-        let result = brain.isDivisibleBy(divisor: 15, number: 1)
-        XCTAssertEqual(result, false)
-    }
+    func testIsDivisibleByThree() {
+        XCTAssertTrue(brain.isDivisibleBy(divisor: 3, number: 9))
+        XCTAssertTrue(brain.isDivisibleBy(divisor: 3, number: 12))
         
+        XCTAssertFalse(brain.isDivisibleBy(divisor: 3, number: 7))
+        XCTAssertFalse(brain.isDivisibleBy(divisor: 3, number: 11))
+    }
+    
+    func testIsDivisibleByFive() {
+        XCTAssertTrue(brain.isDivisibleBy(divisor: 5, number: 10))
+        XCTAssertTrue(brain.isDivisibleBy(divisor: 5, number: 25))
+        
+        XCTAssertFalse(brain.isDivisibleBy(divisor: 5, number: 7))
+        XCTAssertFalse(brain.isDivisibleBy(divisor: 5, number: 11))
+    }
+    
+    func testIsDivisibleByThreeAndFive() {
+        XCTAssertTrue(brain.isDivisibleBy(divisor: 3, number: 15))
+        XCTAssertFalse(brain.isDivisibleBy(divisor: 3, number: 7))
+        
+        XCTAssertTrue(brain.isDivisibleBy(divisor: 5, number: 15))
+        XCTAssertFalse(brain.isDivisibleBy(divisor: 5, number: 9))
+        
+        XCTAssertTrue(brain.isDivisibleBy(divisor: 15, number: 15))
+        XCTAssertFalse(brain.isDivisibleBy(divisor: 15, number: 10))
+    }
+    
 
 }
