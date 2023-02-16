@@ -9,7 +9,12 @@ import Foundation
 
 class ContentViewModel: ObservableObject {
     
-    @Published var currentLevel: String = ""
+    var currentLevel: Int{
+        if let safeGameScore = self.gameScore{
+            return safeGameScore + 1
+        }
+        return 1
+    }
     @Published var totalLevels: String = ""
     @Published var colorBackground = "Main-Background"
     @Published var gameScore: Int?
@@ -23,27 +28,27 @@ class ContentViewModel: ObservableObject {
         
     }
     
-    func play(move: String) {
+    func playButton(move: String) {
         guard let safeGame = self.game else { return }
-        let _ = safeGame.play(move: move)
+        safeGame.play(move: move)
         gameScore = safeGame.score
     }
     
     
     func scorePressed () {
-        
+        playButton(move: "\(currentLevel)")
     }
     
     func champagnePressed () {
-        
+        playButton(move: "Fizz")
     }
     
     func lightningPressed () {
-        
+        playButton(move: "Buzz")
     }
     
     func spacePressed () {
-        
+        playButton(move: "FizzBuzz")
     }
     
     func playAgainPressed () {

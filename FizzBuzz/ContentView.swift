@@ -32,7 +32,7 @@ struct ContentView: View {
                         Button {
                             viewModel.scorePressed()
                         } label: {
-                            Text("0")
+                            Text("\(viewModel.currentLevel)")
                                 .font(.system(size: 50))
                                 .frame(width: 65, height: 65)
                                 .padding()

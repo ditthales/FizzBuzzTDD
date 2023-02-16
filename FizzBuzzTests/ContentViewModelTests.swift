@@ -14,14 +14,14 @@ final class ContentViewModelTests: XCTestCase {
 
     
     func testMove1IncrementsScore() {
-        viewModel.play(move: "1")
+        viewModel.playButton(move: "1")
         let newScore = viewModel.gameScore
         XCTAssertEqual(newScore, 1)
     }
     
     func testMove2IncrementScore() {
-        viewModel.play(move: "1")
-        viewModel.play(move: "2")
+        viewModel.playButton(move: "1")
+        viewModel.playButton(move: "2")
         let newScore = viewModel.gameScore
         XCTAssertEqual(newScore, 2)
     }
@@ -29,6 +29,27 @@ final class ContentViewModelTests: XCTestCase {
     func testHasGame() {
         XCTAssertNotNil(viewModel.game)
     }
+    
+    func testIfClickScoreIsRight(){
+        viewModel.scorePressed()
+        XCTAssertEqual(viewModel.gameScore, 1)
+    }
+    
+    func testIfClickChampagneIsRight(){
+        viewModel.champagnePressed()
+        XCTAssertEqual(viewModel.gameScore, 0)
+    }
+    
+    func testIfClickLightningIsRight(){
+        viewModel.lightningPressed()
+        XCTAssertEqual(viewModel.gameScore, 0)
+    }
+    
+    func testIfClickSpaceIsRight(){
+        viewModel.spacePressed()
+        XCTAssertEqual(viewModel.gameScore, 0)
+    }
+    
     
 //    func scorePressed () {
 //

@@ -17,15 +17,10 @@ class Game{
         self.brain = Brain()
     }
     
-    func play(move: String) -> Bool{
+    func play(move: String){
         
-        let result = brain.check(number: score + 1)
-        
-        if result == move{
+        if move == brain.check(number: score + 1){
             score += 1
-            return true
-        }else{
-            return false
         }
     }
     
