@@ -20,7 +20,7 @@ struct ContentView: View {
         ZStack {
             Color(viewModel.colorBackground)
             VStack {
-                LivesView(totalLives: .constant(2), remainingLives: .constant(1))
+                LivesView(totalLives: $viewModel.totalLives, remainingLives: $viewModel.remainingLives)
                 
                 Spacer()
                 

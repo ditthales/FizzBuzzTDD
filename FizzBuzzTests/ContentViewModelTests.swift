@@ -50,6 +50,10 @@ final class ContentViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.gameScore, 0)
     }
     
+    func testIfhasTotalLives() {
+        XCTAssertNotNil(viewModel.totalLives)
+    }
+    
     
 //    func scorePressed () {
 //

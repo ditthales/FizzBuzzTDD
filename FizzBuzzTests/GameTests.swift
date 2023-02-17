@@ -26,6 +26,23 @@ final class GameTests: XCTestCase {
         XCTAssertEqual(game.score, 0)
     }
     
+    func testIfGameStartsWithMoreThanOneTotalLive() {
+        XCTAssertGreaterThanOrEqual(game.totalLives, 1)
+    }
+    
+    func testIfGameStartsWithTotalLivesEqualToRemainingLives() {
+        XCTAssertEqual(game.totalLives, game.remainingLives)
+    }
+    
+    func testIfRightMoveDontChangeLivesRemainingLives() {
+        game.play(move: "1")
+        XCTAssertEqual(game.totalLives, game.remainingLives)
+    }
+    
+    func testIfWrongMoveDecreasesRemainingLives() {
+        game.play(move: "Fizz")
+        XCTAssertEqual(game.totalLives, game.remainingLives + 1)
+    }
     
     
 //    func testOnPlayScoreIncremented(){
