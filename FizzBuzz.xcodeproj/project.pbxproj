@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17ED801629A00DBC0046B4C2 /* LivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED801529A00DBC0046B4C2 /* LivesView.swift */; };
 		47240289299C03010033C125 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47240288299C03000033C125 /* GameTests.swift */; };
 		4724028E299C039B0033C125 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4724028D299C039B0033C125 /* Game.swift */; };
 		474240D7299AD567002A04EA /* FizzBuzzApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474240D6299AD567002A04EA /* FizzBuzzApp.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17ED801529A00DBC0046B4C2 /* LivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesView.swift; sourceTree = "<group>"; };
 		47240288299C03000033C125 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		4724028D299C039B0033C125 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		474240D3299AD567002A04EA /* FizzBuzz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FizzBuzz.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 			children = (
 				474240D6299AD567002A04EA /* FizzBuzzApp.swift */,
 				474240D8299AD567002A04EA /* ContentView.swift */,
+				17ED801529A00DBC0046B4C2 /* LivesView.swift */,
 				C0F777E0299C1CF800668F03 /* ContentViewModel.swift */,
 				474240DA299AD568002A04EA /* Assets.xcassets */,
 				4724028A299C037B0033C125 /* Model */,
@@ -283,6 +286,7 @@
 			files = (
 				474240D9299AD567002A04EA /* ContentView.swift in Sources */,
 				47424103299AD5BA002A04EA /* Brain.swift in Sources */,
+				17ED801629A00DBC0046B4C2 /* LivesView.swift in Sources */,
 				474240D7299AD567002A04EA /* FizzBuzzApp.swift in Sources */,
 				4724028E299C039B0033C125 /* Game.swift in Sources */,
 				C0F777E1299C1CF800668F03 /* ContentViewModel.swift in Sources */,
