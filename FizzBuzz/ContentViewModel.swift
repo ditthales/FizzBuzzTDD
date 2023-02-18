@@ -15,9 +15,12 @@ class ContentViewModel: ObservableObject {
         }
         return 1
     }
+    @Published var totalLives: Int
+    @Published var remainingLives: Int
     @Published var totalLevels: String = ""
     @Published var colorBackground = "Main-Background"
     @Published var gameScore: Int?
+    
     
     // how to test a private var?
     var game: Game?
@@ -25,13 +28,17 @@ class ContentViewModel: ObservableObject {
     init(gameScore: Int? = 0, game: Game = Game()) {
         self.gameScore = gameScore
         self.game = game
+        self.totalLives = game.totalLives
+        self.remainingLives = game.remainingLives
         
     }
     
     func playButton(move: String) {
         guard let safeGame = self.game else { return }
         safeGame.play(move: move)
-        gameScore = safeGame.score
+        self.gameScore = safeGame.score
+        self.remainingLives = safeGame.remainingLives
+        
     }
     
     

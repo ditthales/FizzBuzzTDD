@@ -20,13 +20,10 @@ struct ContentView: View {
         ZStack {
             Color(viewModel.colorBackground)
             VStack {
-                HStack {
-                    Spacer()
-                    Text("3 / 5")
-                        .font(.title)
-                        .bold()
-                }
+                LivesView(totalLives: $viewModel.totalLives, remainingLives: $viewModel.remainingLives)
+                
                 Spacer()
+                
                 VStack (spacing: 25) {
                     HStack (spacing: 25) {
                         Button {
@@ -72,7 +69,9 @@ struct ContentView: View {
                         
                     }
                 }
+                
                 Spacer()
+                
                 HStack {
                     Spacer()
                     Button {
