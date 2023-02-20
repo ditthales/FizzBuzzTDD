@@ -49,22 +49,22 @@ final class BrainTests: XCTestCase {
     
     func testSayFizz(){
         let result = brain.check(number: 3)
-        XCTAssertEqual(result, "Fizz")
+        XCTAssertEqual(result, Move.fizz)
     }
     
     func testSayBuzz(){
         let result = brain.check(number: 5)
-        XCTAssertEqual(result, "Buzz")
+        XCTAssertEqual(result, Move.buzz)
     }
     
     func testSayFizzBuzz(){
         let result = brain.check(number: 15)
-        XCTAssertEqual(result, "FizzBuzz")
+        XCTAssertEqual(result, Move.fizzBuzz)
     }
     
     func testIfNumberIsOne(){
         let result = brain.check(number: 1)
-        XCTAssertEqual(result, "1")
+        XCTAssertEqual(result, Move.number)
     }
     
     

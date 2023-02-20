@@ -33,9 +33,9 @@ class ContentViewModel: ObservableObject {
         
     }
     
-    func playButton(move: String) {
+    func playButton(move: Move) {
         guard let safeGame = self.game else { return }
-        safeGame.play(move: move)
+        safeGame.play(with: move)
         updateInfoFromModel()
         
     }
@@ -49,19 +49,19 @@ class ContentViewModel: ObservableObject {
     
     
     func scorePressed () {
-        playButton(move: "\(currentLevel)")
+        playButton(move: .number)
     }
     
     func champagnePressed () {
-        playButton(move: "Fizz")
+        playButton(move: .fizz)
     }
     
     func lightningPressed () {
-        playButton(move: "Buzz")
+        playButton(move: .buzz)
     }
     
     func spacePressed () {
-        playButton(move: "FizzBuzz")
+        playButton(move: .fizzBuzz)
     }
     
     func playAgainPressed () {
