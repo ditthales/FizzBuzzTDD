@@ -60,6 +60,15 @@ final class ContentViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.gameScore, 0)
     }
     
+    func testIfViewModelStartsWithPlayingState() {
+        XCTAssertEqual(viewModel.state, .playing)
+    }
+    
+    func testIfViewModelWillChangeState() {
+        viewModel.game?.remainingLives = 0
+        XCTAssertEqual(viewModel.state, .gameOver)
+    }
+    
 //    func scorePressed () {
 //
 //    }

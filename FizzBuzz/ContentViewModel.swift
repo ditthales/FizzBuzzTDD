@@ -10,17 +10,30 @@ import SwiftUI
 
 class ContentViewModel: ObservableObject {
     
+    enum State {
+        case playing, gameOver
+    }
+    
     var currentLevel: Int{
         if let safeGameScore = self.gameScore{
             return safeGameScore + 1
         }
         return 1
     }
+    
     @Published var totalLives: Int
     @Published var remainingLives: Int
-    @Published var totalLevels: String = ""
-    @Published var colorBackground = "Main-Background"
+    @Published var colorBackground: String
     @Published var gameScore: Int?
+    
+    var state: State {
+        guard let safeGame = game else { return .gameOver}
+        if safeGame.remainingLives > 0 {
+            return .playing
+        } else {
+            return .gameOver
+        }
+    }
     
     
     // how to test a private var?
@@ -31,6 +44,7 @@ class ContentViewModel: ObservableObject {
         self.gameScore = gameScore
         self.totalLives = game.totalLives
         self.remainingLives = game.remainingLives
+        self.colorBackground = "Main-Background"
         
     }
     
@@ -42,8 +56,6 @@ class ContentViewModel: ObservableObject {
             }
         }
         updateInfoFromModel()
-        
-        
         
     }
     
