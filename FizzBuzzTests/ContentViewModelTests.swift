@@ -54,6 +54,11 @@ final class ContentViewModelTests: XCTestCase {
         XCTAssertNotNil(viewModel.totalLives)
     }
     
+    func testIfPlayAgainResetsGame() {
+        viewModel.playButton(move: "1")
+        viewModel.playAgainPressed()
+        XCTAssertEqual(viewModel.gameScore, 0)
+    }
     
 //    func scorePressed () {
 //

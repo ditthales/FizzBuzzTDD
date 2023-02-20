@@ -26,8 +26,8 @@ class ContentViewModel: ObservableObject {
     var game: Game?
     
     init(gameScore: Int? = 0, game: Game = Game()) {
-        self.gameScore = gameScore
         self.game = game
+        self.gameScore = gameScore
         self.totalLives = game.totalLives
         self.remainingLives = game.remainingLives
         
@@ -36,9 +36,15 @@ class ContentViewModel: ObservableObject {
     func playButton(move: String) {
         guard let safeGame = self.game else { return }
         safeGame.play(move: move)
-        self.gameScore = safeGame.score
-        self.remainingLives = safeGame.remainingLives
+        updateInfoFromModel()
         
+    }
+    
+    func updateInfoFromModel() {
+        guard let safeGame = self.game else { return }
+        self.gameScore = safeGame.score
+        self.totalLives = safeGame.totalLives
+        self.remainingLives = safeGame.remainingLives
     }
     
     
@@ -59,6 +65,9 @@ class ContentViewModel: ObservableObject {
     }
     
     func playAgainPressed () {
+        let newGame = Game()
+        self.game = newGame
+        updateInfoFromModel()
         
     }
 }
