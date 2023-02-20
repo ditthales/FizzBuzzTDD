@@ -43,6 +43,8 @@ class ContentViewModel: ObservableObject {
         }
         updateInfoFromModel()
         
+        
+        
     }
     
     
@@ -81,7 +83,7 @@ class ContentViewModel: ObservableObject {
         withAnimation(.easeInOut(duration: 0.25)) {
             self.colorBackground = "Fail-Background"
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                withAnimation(.easeInOut(duration: 0.25)) {
+                withAnimation(.easeInOut(duration: 0.5)) {
                     self.colorBackground = "Main-Background"
                 }
             }
