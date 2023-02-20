@@ -35,7 +35,7 @@ class ContentViewModel: ObservableObject {
     
     func playButton(move: Move) {
         guard let safeGame = self.game else { return }
-        safeGame.play(with: move)
+        safeGame.play(withMove: move)
         updateInfoFromModel()
         
     }

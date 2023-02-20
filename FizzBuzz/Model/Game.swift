@@ -21,7 +21,7 @@ class Game{
         self.remainingLives = totalLives
     }
     
-    func play(with move: Move){
+    func play(withMove move: Move){
         
         if move == brain.check(number: score + 1){
             self.score += 1

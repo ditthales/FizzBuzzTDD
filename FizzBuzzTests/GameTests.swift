@@ -17,12 +17,12 @@ final class GameTests: XCTestCase {
     }
     
     func testIfRightMoveIncreaseScore(){
-        game.play(with: .number)
+        game.play(withMove: .number)
         XCTAssertEqual(game.score, 1)
     }
     
     func testIfWrongMoveDontIncreaseScore(){
-        game.play(with: .fizz)
+        game.play(withMove: .fizz)
         XCTAssertEqual(game.score, 0)
     }
     
@@ -35,12 +35,12 @@ final class GameTests: XCTestCase {
     }
     
     func testIfRightMoveDontChangeLivesRemainingLives() {
-        game.play(with: .number)
+        game.play(withMove: .number)
         XCTAssertEqual(game.totalLives, game.remainingLives)
     }
     
     func testIfWrongMoveDecreasesRemainingLives() {
-        game.play(with: .fizz)
+        game.play(withMove: .fizz)
         XCTAssertEqual(game.totalLives, game.remainingLives + 1)
     }
     
