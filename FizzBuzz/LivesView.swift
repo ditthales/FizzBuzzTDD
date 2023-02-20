@@ -16,7 +16,7 @@ struct LivesView: View {
             Spacer()
             
             ForEach(0..<totalLives, id: \.self) { index in
-                Image(systemName: index < remainingLives ? "heart" : "heart.fill")
+                Image(systemName: index < remainingLives ? "heart.fill" : "heart")
                     .foregroundColor(.red)
                     .scaleEffect(1.5)
             }
