@@ -27,7 +27,3 @@ class Brain{
     
 }
 
-
-enum Move {
-    case fizz, buzz, fizzBuzz, number
-}
