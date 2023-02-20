@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ContentViewModel: ObservableObject {
     
@@ -19,7 +20,6 @@ class ContentViewModel: ObservableObject {
     @Published var remainingLives: Int
     @Published var totalLevels: String = ""
     @Published var colorBackground = "Main-Background"
-    
     @Published var gameScore: Int?
     
     
@@ -37,11 +37,14 @@ class ContentViewModel: ObservableObject {
     func playButton(move: Move) {
         guard let safeGame = self.game else { return }
         safeGame.play(withMove: move) { isSuccess in
-            // must change color background to red for a moment
+            if !isSuccess {
+                self.wrongMoveAnimation()
+            }
         }
         updateInfoFromModel()
         
     }
+    
     
     func updateInfoFromModel() {
         guard let safeGame = self.game else { return }
@@ -72,5 +75,16 @@ class ContentViewModel: ObservableObject {
         self.game = newGame
         updateInfoFromModel()
         
+    }
+    
+    func wrongMoveAnimation() {
+        withAnimation(.easeInOut(duration: 0.25)) {
+            self.colorBackground = "Fail-Background"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation(.easeInOut(duration: 0.25)) {
+                    self.colorBackground = "Main-Background"
+                }
+            }
+        }
     }
 }
