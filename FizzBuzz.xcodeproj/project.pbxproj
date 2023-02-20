@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1720B28229A4005E003821E0 /* Move.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1720B28129A4005E003821E0 /* Move.swift */; };
+		1720B28429A400BB003821E0 /* EndGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1720B28329A400BB003821E0 /* EndGameView.swift */; };
 		17ED801629A00DBC0046B4C2 /* LivesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17ED801529A00DBC0046B4C2 /* LivesView.swift */; };
 		47240289299C03010033C125 /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47240288299C03000033C125 /* GameTests.swift */; };
 		4724028E299C039B0033C125 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4724028D299C039B0033C125 /* Game.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		1720B28129A4005E003821E0 /* Move.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Move.swift; sourceTree = "<group>"; };
+		1720B28329A400BB003821E0 /* EndGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGameView.swift; sourceTree = "<group>"; };
 		17ED801529A00DBC0046B4C2 /* LivesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LivesView.swift; sourceTree = "<group>"; };
 		47240288299C03000033C125 /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		4724028D299C039B0033C125 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				474240D6299AD567002A04EA /* FizzBuzzApp.swift */,
 				474240D8299AD567002A04EA /* ContentView.swift */,
 				17ED801529A00DBC0046B4C2 /* LivesView.swift */,
+				1720B28329A400BB003821E0 /* EndGameView.swift */,
 				C0F777E0299C1CF800668F03 /* ContentViewModel.swift */,
 				474240DA299AD568002A04EA /* Assets.xcassets */,
 				4724028A299C037B0033C125 /* Model */,
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1720B28429A400BB003821E0 /* EndGameView.swift in Sources */,
 				1720B28229A4005E003821E0 /* Move.swift in Sources */,
 				474240D9299AD567002A04EA /* ContentView.swift in Sources */,
 				47424103299AD5BA002A04EA /* Brain.swift in Sources */,

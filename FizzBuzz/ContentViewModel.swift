@@ -19,6 +19,7 @@ class ContentViewModel: ObservableObject {
     @Published var remainingLives: Int
     @Published var totalLevels: String = ""
     @Published var colorBackground = "Main-Background"
+    
     @Published var gameScore: Int?
     
     
@@ -35,7 +36,9 @@ class ContentViewModel: ObservableObject {
     
     func playButton(move: Move) {
         guard let safeGame = self.game else { return }
-        safeGame.play(withMove: move)
+        safeGame.play(withMove: move) { isSuccess in
+            // must change color background to red for a moment
+        }
         updateInfoFromModel()
         
     }
