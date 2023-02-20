@@ -50,15 +50,21 @@ class ContentViewModel: ObservableObject {
     
     func playButton(move: Move) {
         guard let safeGame = self.game else { return }
+        
         safeGame.play(withMove: move) { isSuccess in
+            if self.state == .gameOver {
+                self.gameOverAnimation()
+                return
+            }
+            
             if !isSuccess {
                 self.wrongMoveAnimation()
             }
         }
+        
         updateInfoFromModel()
         
     }
-    
     
     func updateInfoFromModel() {
         guard let safeGame = self.game else { return }
@@ -85,10 +91,19 @@ class ContentViewModel: ObservableObject {
     }
     
     func playAgainPressed () {
+        withAnimation(.easeInOut(duration: 0.5)) {
+            self.colorBackground = "Main-Background"
+        }
         let newGame = Game()
         self.game = newGame
         updateInfoFromModel()
         
+    }
+    
+    func gameOverAnimation() {
+        withAnimation(.easeInOut(duration: 0.5)) {
+            self.colorBackground = "Fail-Background"
+        }
     }
     
     func wrongMoveAnimation() {
@@ -101,4 +116,6 @@ class ContentViewModel: ObservableObject {
             }
         }
     }
+    
+    
 }
