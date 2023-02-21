@@ -6,8 +6,13 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ContentViewModel: ObservableObject {
+    
+    enum State {
+        case playing, gameOver
+    }
     
     var currentLevel: Int{
         if let safeGameScore = self.gameScore{
@@ -15,50 +20,102 @@ class ContentViewModel: ObservableObject {
         }
         return 1
     }
+    
     @Published var totalLives: Int
     @Published var remainingLives: Int
-    @Published var totalLevels: String = ""
-    @Published var colorBackground = "Main-Background"
+    @Published var colorBackground: String
     @Published var gameScore: Int?
+    
+    var state: State {
+        guard let safeGame = game else { return .gameOver}
+        if safeGame.remainingLives > 0 {
+            return .playing
+        } else {
+            return .gameOver
+        }
+    }
     
     
     // how to test a private var?
     var game: Game?
     
     init(gameScore: Int? = 0, game: Game = Game()) {
-        self.gameScore = gameScore
         self.game = game
+        self.gameScore = gameScore
         self.totalLives = game.totalLives
         self.remainingLives = game.remainingLives
+        self.colorBackground = "Main-Background"
         
     }
     
-    func playButton(move: String) {
+    func playButton(move: Move) {
         guard let safeGame = self.game else { return }
-        safeGame.play(move: move)
-        self.gameScore = safeGame.score
-        self.remainingLives = safeGame.remainingLives
         
+        safeGame.play(withMove: move) { isSuccess in
+            if self.state == .gameOver {
+                self.gameOverAnimation()
+                return
+            }
+            
+            if !isSuccess {
+                self.wrongMoveAnimation()
+            }
+        }
+        
+        updateInfoFromModel()
+        
+    }
+    
+    func updateInfoFromModel() {
+        guard let safeGame = self.game else { return }
+        self.gameScore = safeGame.score
+        self.totalLives = safeGame.totalLives
+        self.remainingLives = safeGame.remainingLives
     }
     
     
     func scorePressed () {
-        playButton(move: "\(currentLevel)")
+        playButton(move: .number)
     }
     
     func champagnePressed () {
-        playButton(move: "Fizz")
+        playButton(move: .fizz)
     }
     
     func lightningPressed () {
-        playButton(move: "Buzz")
+        playButton(move: .buzz)
     }
     
     func spacePressed () {
-        playButton(move: "FizzBuzz")
+        playButton(move: .fizzBuzz)
     }
     
     func playAgainPressed () {
+        withAnimation(.easeInOut(duration: 0.5)) {
+            self.colorBackground = "Main-Background"
+        }
+        let newGame = Game()
+        self.game = newGame
+        updateInfoFromModel()
         
     }
+    
+    func gameOverAnimation() {
+        withAnimation(.easeInOut(duration: 0.5)) {
+            self.colorBackground = "Fail-Background"
+        }
+    }
+    
+    func wrongMoveAnimation() {
+        withAnimation(.easeInOut(duration: 0.25)) {
+            self.colorBackground = "Fail-Background"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                withAnimation(.easeInOut(duration: 0.5)) {
+                    self.colorBackground = "Main-Background"
+                }
+            }
+        }
+    }
+    
+    
 }

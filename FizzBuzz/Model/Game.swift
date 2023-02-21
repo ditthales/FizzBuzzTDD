@@ -21,12 +21,14 @@ class Game{
         self.remainingLives = totalLives
     }
     
-    func play(move: String){
+    func play(withMove move: Move, completionResult: @escaping (Bool) -> Void){
         
         if move == brain.check(number: score + 1){
             self.score += 1
+            completionResult(true)
         } else {
             self.remainingLives -= 1
+            completionResult(false)
         }
 
     }
