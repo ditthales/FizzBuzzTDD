@@ -13,6 +13,12 @@ struct LivesView: View {
     
     var body: some View {
         HStack(spacing: 20) {
+            Text("FizzBuzz")
+                .fontWeight(.black)
+                .font(.title)
+                .foregroundColor(.white)
+            
+            
             Spacer()
             
             ForEach(0..<totalLives, id: \.self) { index in
