@@ -36,16 +36,16 @@ struct ContentView: View {
                                 Text("\(viewModel.currentLevel)")
                                     .font(.system(size: 50))
                                     .frame(width: 65, height: 65)
-                                    .padding()
+                                    .padding(25)
                                     .border(.white, width: 4)
                                     .cornerRadius(5)
                             }
                             Button {
                                 viewModel.champagnePressed()
                             } label: {
-                                Image("champagne")
+                                Image("divide3")
                                     .frame(width: 65, height: 65)
-                                    .padding()
+                                    .padding(25)
                                     .border(.white, width: 4)
                                     .cornerRadius(5)
                             }
@@ -55,18 +55,18 @@ struct ContentView: View {
                             Button {
                                 viewModel.lightningPressed()
                             } label: {
-                                Image("lightning")
+                                Image("divide5")
                                     .frame(width: 65, height: 65)
-                                    .padding()
+                                    .padding(25)
                                     .border(.white, width: 4)
                                     .cornerRadius(5)
                             }
                             Button {
                                 viewModel.spacePressed()
                             } label: {
-                                Image("space")
+                                Image("divide15")
                                     .frame(width: 65, height: 65)
-                                    .padding()
+                                    .padding(25)
                                     .border(.white, width: 4)
                                     .cornerRadius(5)
                             }
