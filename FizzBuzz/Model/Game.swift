@@ -7,23 +7,34 @@
 
 import Foundation
 
-class Game{
+protocol GameProtocol {
+    var score: Int { get }
+    var totalLives: Int { get }
+    var remainingLives: Int { get }
     
+    func playRound(withMove move: Move, completionResult: @escaping (Bool) -> Void)
+    
+}
+
+class Game: GameProtocol {
+    
+    private let brain: Brain
     var score: Int
-    let brain: Brain
     var totalLives: Int
     var remainingLives: Int
     
     init(totalLives: Int = 3) {
-        self.score = 0
         self.brain = Brain()
+        self.score = 1
         self.totalLives = totalLives
         self.remainingLives = totalLives
     }
     
-    func play(withMove move: Move, completionResult: @escaping (Bool) -> Void){
+    func playRound(withMove move: Move, completionResult: @escaping (Bool) -> Void){
         
-        if move == brain.check(number: score + 1){
+        let correctMove = brain.correctMoveForNumber(number: score)
+        
+        if move == correctMove {
             self.score += 1
             completionResult(true)
         } else {

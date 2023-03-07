@@ -12,18 +12,20 @@ final class GameTests: XCTestCase {
 
     let game = Game()
     
-    func testGameStartsAtZero(){
-        XCTAssertTrue(game.score == 0)
+    func testGameStartsAtOne(){
+        XCTAssertTrue(game.score == 1)
     }
     
     func testIfRightMoveIncreaseScore(){
-        game.play(withMove: .number) { _ in }
-        XCTAssertEqual(game.score, 1)
+        let scoreToBeMatched = game.score + 1
+        game.playRound(withMove: .number) { _ in }
+        XCTAssertEqual(game.score, scoreToBeMatched)
     }
     
     func testIfWrongMoveDontIncreaseScore(){
-        game.play(withMove: .fizz) { _ in }
-        XCTAssertEqual(game.score, 0)
+        let scoreToBeMatched = game.score
+        game.playRound(withMove: .fizz) { _ in }
+        XCTAssertEqual(game.score, scoreToBeMatched)
     }
     
     func testIfGameStartsWithMoreThanOneTotalLive() {
@@ -35,18 +37,18 @@ final class GameTests: XCTestCase {
     }
     
     func testIfRightMoveDontChangeLivesRemainingLives() {
-        game.play(withMove: .number) { _ in }
+        game.playRound(withMove: .number) { _ in }
         XCTAssertEqual(game.totalLives, game.remainingLives)
     }
     
     func testIfWrongMoveDecreasesRemainingLives() {
-        game.play(withMove: .fizz) { _ in }
+        game.playRound(withMove: .fizz) { _ in }
         XCTAssertEqual(game.totalLives, game.remainingLives + 1)
     }
     
     func testIfRightMoveReturnsTrue() {
         var isSuccess = false
-        game.play(withMove: .number) { result in
+        game.playRound(withMove: .number) { result in
             isSuccess = result
         }
         XCTAssertEqual(isSuccess, true)
@@ -54,7 +56,7 @@ final class GameTests: XCTestCase {
     
     func testIfWrongMoveReturnsFalse() {
         var isSuccess = true
-        game.play(withMove: .fizz) { result in
+        game.playRound(withMove: .fizz) { result in
             isSuccess = result
         }
         XCTAssertEqual(isSuccess, false)

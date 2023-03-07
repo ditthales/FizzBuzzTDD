@@ -12,7 +12,7 @@ class Brain{
         return number % divisor == 0
     }
     
-    func check(number: Int) -> Move {
+    func correctMoveForNumber(number: Int) -> Move {
         if isDivisibleBy(divisor: 15, number: number){
             return .fizzBuzz
         }else if isDivisibleBy(divisor: 5, number: number){

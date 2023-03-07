@@ -33,7 +33,7 @@ struct ContentView: View {
                             Button {
                                 viewModel.scorePressed()
                             } label: {
-                                Text("\(viewModel.currentLevel)")
+                                Text("\(viewModel.gameScore)")
                                     .font(.system(size: 50))
                                     .frame(width: 65, height: 65)
                                     .padding(25)
@@ -89,7 +89,7 @@ struct ContentView: View {
                             .foregroundColor(.white)
                             .bold()
                         
-                        Text("Your Score:  \(viewModel.currentLevel)")
+                        Text("Your Score:  \(viewModel.gameScore)")
                             .font(.headline)
                     }
                    

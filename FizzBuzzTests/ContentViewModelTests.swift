@@ -10,44 +10,61 @@ import XCTest
 
 final class ContentViewModelTests: XCTestCase {
 
-    let viewModel = ContentViewModel()
-
+    var viewModel: ContentViewModel!
     
-    func testMove1IncrementsScore() {
+    override func setUpWithError() throws {
+        viewModel = ContentViewModel()
+    }
+    
+    
+    func test1CorrectMoveIncrementsScore() {
+        let scoreToBeMatched = viewModel.gameScore + 1
+        
         viewModel.playButton(move: .number)
         let newScore = viewModel.gameScore
-        XCTAssertEqual(newScore, 1)
+        XCTAssertEqual(newScore, scoreToBeMatched)
     }
     
-    func testMove2IncrementScore() {
+    func test2CorrectMovesIncrementScore() {
+        let scoreToBeMatched = viewModel.gameScore + 2
+        
         viewModel.playButton(move: .number)
         viewModel.playButton(move: .number)
         let newScore = viewModel.gameScore
-        XCTAssertEqual(newScore, 2)
+        XCTAssertEqual(newScore, scoreToBeMatched)
     }
     
-    func testHasGame() {
-        XCTAssertNotNil(viewModel.game)
-    }
+//    game aways will have a game
+//    func testHasGame() {
+//        XCTAssertNotNil(viewModel.game)
+//    }
     
     func testIfClickScoreIsRight(){
+        let scoreToBeMatched = viewModel.gameScore + 1
+        
         viewModel.scorePressed()
-        XCTAssertEqual(viewModel.gameScore, 1)
+        XCTAssertEqual(viewModel.gameScore, scoreToBeMatched)
     }
     
     func testIfClickChampagneIsRight(){
+        let scoreToBeMatched = viewModel.gameScore
+        
         viewModel.champagnePressed()
-        XCTAssertEqual(viewModel.gameScore, 0)
+        XCTAssertEqual(viewModel.gameScore, scoreToBeMatched)
     }
     
     func testIfClickLightningIsRight(){
+        let scoreToBeMatched = viewModel.gameScore
+        
         viewModel.lightningPressed()
-        XCTAssertEqual(viewModel.gameScore, 0)
+        XCTAssertEqual(viewModel.gameScore, scoreToBeMatched)
     }
     
     func testIfClickSpaceIsRight(){
+        let scoreToBeMatched = viewModel.gameScore
+        
         viewModel.spacePressed()
-        XCTAssertEqual(viewModel.gameScore, 0)
+        XCTAssertEqual(viewModel.gameScore, scoreToBeMatched)
     }
     
     func testIfhasTotalLives() {
@@ -55,9 +72,11 @@ final class ContentViewModelTests: XCTestCase {
     }
     
     func testIfPlayAgainResetsGame() {
+        let scoreToBeMatched = viewModel.gameScore
+        
         viewModel.playButton(move: .number)
         viewModel.playAgainPressed()
-        XCTAssertEqual(viewModel.gameScore, 0)
+        XCTAssertEqual(viewModel.gameScore, scoreToBeMatched)
     }
     
     func testIfViewModelStartsWithPlayingState() {
@@ -65,9 +84,19 @@ final class ContentViewModelTests: XCTestCase {
     }
     
     func testIfViewModelWillChangeState() {
-        viewModel.game?.remainingLives = 0
+        viewModel.playButton(move: .fizzBuzz)
+        viewModel.playButton(move: .fizzBuzz)
+        viewModel.playButton(move: .fizzBuzz)
         XCTAssertEqual(viewModel.state, .gameOver)
     }
+    
+    func testIfCurrentLevelIncreasesWhenCorrectMove() {
+        viewModel.scorePressed()
+        
+        XCTAssertEqual(viewModel.gameScore, 2)
+    }
+    
+    
     
 //    func scorePressed () {
 //

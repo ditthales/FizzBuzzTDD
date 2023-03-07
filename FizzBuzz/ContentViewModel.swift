@@ -13,22 +13,14 @@ class ContentViewModel: ObservableObject {
     enum State {
         case playing, gameOver
     }
-    
-    var currentLevel: Int{
-        if let safeGameScore = self.gameScore{
-            return safeGameScore + 1
-        }
-        return 1
-    }
-    
+        
     @Published var totalLives: Int
     @Published var remainingLives: Int
     @Published var colorBackground: String
-    @Published var gameScore: Int?
+    @Published var gameScore: Int
     
     var state: State {
-        guard let safeGame = game else { return .gameOver}
-        if safeGame.remainingLives > 0 {
+        if game.remainingLives > 0 {
             return .playing
         } else {
             return .gameOver
@@ -37,11 +29,11 @@ class ContentViewModel: ObservableObject {
     
     
     // how to test a private var?
-    var game: Game?
+    private var game: GameProtocol
     
-    init(gameScore: Int? = 0, game: Game = Game()) {
+    init(game: GameProtocol = Game()) {
         self.game = game
-        self.gameScore = gameScore
+        self.gameScore = game.score
         self.totalLives = game.totalLives
         self.remainingLives = game.remainingLives
         self.colorBackground = "Main-Background"
@@ -49,9 +41,8 @@ class ContentViewModel: ObservableObject {
     }
     
     func playButton(move: Move) {
-        guard let safeGame = self.game else { return }
         
-        safeGame.play(withMove: move) { isSuccess in
+        game.playRound(withMove: move) { isSuccess in
             if self.state == .gameOver {
                 self.gameOverAnimation()
                 return
@@ -67,10 +58,9 @@ class ContentViewModel: ObservableObject {
     }
     
     func updateInfoFromModel() {
-        guard let safeGame = self.game else { return }
-        self.gameScore = safeGame.score
-        self.totalLives = safeGame.totalLives
-        self.remainingLives = safeGame.remainingLives
+        self.gameScore = game.score
+        self.totalLives = game.totalLives
+        self.remainingLives = game.remainingLives
     }
     
     
