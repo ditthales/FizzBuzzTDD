@@ -8,5 +8,5 @@
 import Foundation
 
 enum Move {
-    case fizz, buzz, fizzBuzz, number
+    case fizz, buzz, fizzBuzz, number, chip, chop, chipChop
 }
