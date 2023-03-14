@@ -8,24 +8,21 @@
 @testable import FizzBuzz
 import XCTest
 
-final class GameTests: XCTestCase {
 
-    let game = Game()
+final class GameTests: XCTestCase {
+    
+    var brainSpy: BrainSpy!
+    var game: Game!
+
+    override func setUpWithError() throws {
+        brainSpy = BrainSpy()
+        game = Game(brain: brainSpy)
+    }
+    
+    // testes se o init da classe está conforme o esperado
     
     func testGameStartsAtOne(){
         XCTAssertTrue(game.score == 1)
-    }
-    
-    func testIfRightMoveIncreaseScore(){
-        let scoreToBeMatched = game.score + 1
-        game.playRound(withMove: .number) { _ in }
-        XCTAssertEqual(game.score, scoreToBeMatched)
-    }
-    
-    func testIfWrongMoveDontIncreaseScore(){
-        let scoreToBeMatched = game.score
-        game.playRound(withMove: .fizz) { _ in }
-        XCTAssertEqual(game.score, scoreToBeMatched)
     }
     
     func testIfGameStartsWithMoreThanOneTotalLive() {
@@ -36,98 +33,73 @@ final class GameTests: XCTestCase {
         XCTAssertEqual(game.totalLives, game.remainingLives)
     }
     
-    func testIfRightMoveDontChangeLivesRemainingLives() {
-        game.playRound(withMove: .number) { _ in }
-        XCTAssertEqual(game.totalLives, game.remainingLives)
-    }
     
-    func testIfWrongMoveDecreasesRemainingLives() {
-        game.playRound(withMove: .fizz) { _ in }
-        XCTAssertEqual(game.totalLives, game.remainingLives + 1)
-    }
-    
-    func testIfRightMoveReturnsTrue() {
-        var isSuccess = false
-        game.playRound(withMove: .number) { result in
-            isSuccess = result
-        }
-        XCTAssertEqual(isSuccess, true)
-    }
-    
-    func testIfWrongMoveReturnsFalse() {
-        var isSuccess = true
-        game.playRound(withMove: .fizz) { result in
-            isSuccess = result
-        }
-        XCTAssertEqual(isSuccess, false)
-    }
-    
-//    func testOnPlayScoreIncremented(){
-//        _ = game.play(move: "1")
-//        XCTAssertTrue(game.score == 1)
-//    }
-//
-//    func testOnPlayTwiceScoreIncremented(){
-//        _ = game.play(move: "1")
-//        _ = game.play(move: "2")
-//        XCTAssertTrue(game.score == 2)
-//    }
-//
-//    func testIfFizzMoveIsRight(){
-//        game.score = 2
-//        let result = game.play(move: "Fizz")
-//        XCTAssertEqual(result, true)
-//    }
-//
-//    func testIfFizzMoveIsWrong(){
-//        game.score = 1
-//        let result = game.play(move: "Fizz")
-//        XCTAssertEqual(result, false)
-//    }
-//
-//    func testIfBuzzMoveIsRight(){
-//        game.score = 4
-//        let result = game.play(move: "Buzz")
-//        XCTAssertEqual(result, true)
-//    }
-//
-//    func testIfBuzzMoveIsWrong(){
-//        game.score = 1
-//        let result = game.play(move: "Buzz")
-//        XCTAssertEqual(result, false)
-//    }
-//
-//    func testIfFizzBuzzMoveIsRight(){
-//        game.score = 14
-//        let result = game.play(move: "FizzBuzz")
-//        XCTAssertEqual(result, true)
-//    }
-//
-//    func testIfFizzBuzzMoveIsWrong(){
-//        game.score = 1
-//        let result = game.play(move: "FizzBuzz")
-//        XCTAssertEqual(result, false)
-//    }
-//
-//    func testIfNumberMoveIsRight(){
-//        game.score = 0
-//        let result = game.play(move: "1")
-//        XCTAssertEqual(result, true)
-//    }
-//
-//    func testIfNumberMoveIsWrong(){
-//        game.score = 1
-//        let result = game.play(move: "4")
-//        XCTAssertEqual(result, false)
-//    }
-//
-//    func testIfMoveWrongScoreNotIncremented(){
-//        game.score = 1
-//        _ = game.play(move: "Fizz")
-//        XCTAssertEqual(game.score, 1)
-//    }
-//
 
+    // teste se o brain.correctMove está sendo chamado
+    func testPlayRoundIsCallingCorrectMove() {
+        let scoreCalled = game.score
+        
+        // when playRound is called
+        game.playRound(withMove: .fizzBuzz)
+       
+        // then brain's correctMove is called with score
+        XCTAssertTrue(brainSpy.isCorrectMoveCalled)
+        XCTAssertEqual(brainSpy.numberCalledOnCorrectMove, scoreCalled)
+
+            
+    }
+
+    func testIfIsMoveCorrecReturnsTrueWhenExpected() {
+        brainSpy.correctMoveReturnedMove = .fizz
+        
+        let result = game.isPlayCorrect(move: .fizz)
+        
+        XCTAssertTrue(result)
+    }
     
+    func testIfIsMoveCorrecReturnsFalseWhenExpected() {
+        brainSpy.correctMoveReturnedMove = .number
+        
+        let result = game.isPlayCorrect(move: .fizzBuzz)
+        
+        XCTAssertFalse(result)
+    }
+    
+    
+    // testar se vidas restantes subtrai 1
+    func testPlayRoundIsCalledWithWrongMove() {
+        // given correctMove returns different move than provided
+        brainSpy.correctMoveReturnedMove = .number
+        
+        // when playRound is called with different move
+        let currentRemainingLives = game.remainingLives
+        let expectedScore = game.score
+        
+        game.playRound(withMove: .fizzBuzz)
+        
+        // then should subtract one from remaining lives
+        let expectedRemainingLives = currentRemainingLives - 1
+        XCTAssertEqual(game.remainingLives, expectedRemainingLives)
+        XCTAssertEqual(game.score, expectedScore)
+        
+    }
+    
+    
+    // testar se movimento correto
+    func testPlayRoundIsCalledWithRightMove() {
+        brainSpy.correctMoveReturnedMove = .fizz
+        
+        let currentGameScore = game.score
+        let expectecRemainingLives = game.remainingLives
+        
+        game.playRound(withMove: .fizz)
+        
+        let expectedScore = currentGameScore + 1
+        XCTAssertEqual(self.game.score, expectedScore)
+        XCTAssertEqual(self.game.remainingLives, expectecRemainingLives)
+         
+
+    }
+
     
 }

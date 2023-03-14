@@ -14,7 +14,7 @@ class ContentViewModel: ObservableObject {
         case playing, gameOver
     }
         
-    @Published var totalLives: Int
+    @Published var initialLives: Int
     @Published var remainingLives: Int
     @Published var colorBackground: String
     @Published var gameScore: Int
@@ -34,7 +34,7 @@ class ContentViewModel: ObservableObject {
     init(game: GameProtocol = Game()) {
         self.game = game
         self.gameScore = game.score
-        self.totalLives = game.totalLives
+        self.initialLives = game.totalLives
         self.remainingLives = game.remainingLives
         self.colorBackground = "Main-Background"
         
@@ -42,29 +42,32 @@ class ContentViewModel: ObservableObject {
     
     func playButton(move: Move) {
         
-        game.playRound(withMove: move) { isSuccess in
-            if self.state == .gameOver {
-                self.gameOverAnimation()
-                return
-            }
-            
-            if !isSuccess {
-                self.wrongMoveAnimation()
-            }
-        }
+        game.playRound(withMove: move)
+        verifyIfShouldAnimate(move: move)
         
         updateInfoFromModel()
+    }
+    
+
+    func verifyIfShouldAnimate(move: Move) {
+        if state == .gameOver {
+            gameOverAnimation()
+            return
+        }
         
+        if !game.isPlayCorrect(move: move) {
+            wrongMoveAnimation()
+        }
     }
     
     func updateInfoFromModel() {
         self.gameScore = game.score
-        self.totalLives = game.totalLives
+        self.initialLives = game.totalLives
         self.remainingLives = game.remainingLives
     }
     
     
-    func scorePressed () {
+    func numberPressed () {
         playButton(move: .number)
     }
     

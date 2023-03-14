@@ -23,7 +23,7 @@ struct ContentView: View {
             switch viewModel.state {
             case .playing:
                 VStack {
-                    LivesView(totalLives: $viewModel.totalLives,
+                    LivesView(totalLives: $viewModel.initialLives,
                               remainingLives: $viewModel.remainingLives)
                     
                     Spacer()
@@ -31,7 +31,7 @@ struct ContentView: View {
                     VStack (spacing: 25) {
                         HStack (spacing: 25) {
                             Button {
-                                viewModel.scorePressed()
+                                viewModel.numberPressed()
                             } label: {
                                 Text("\(viewModel.gameScore)")
                                     .font(.system(size: 50))

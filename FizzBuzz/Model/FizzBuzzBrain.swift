@@ -7,12 +7,12 @@
 
 import Foundation
 
-class Brain{
-    func isDivisibleBy(divisor: Int, number: Int) -> Bool{
+class FizzBuzzBrain: BrainProtocol {
+    private func isDivisibleBy(divisor: Int, number: Int) -> Bool{
         return number % divisor == 0
     }
     
-    func correctMoveForNumber(number: Int) -> Move {
+    func correctMove(forNumber number: Int) -> Move {
         if isDivisibleBy(divisor: 15, number: number){
             return .fizzBuzz
         }else if isDivisibleBy(divisor: 5, number: number){
