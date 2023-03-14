@@ -42,9 +42,9 @@ class ContentViewModel: ObservableObject {
     
     func playButton(move: Move) {
         
-        game.playRound(withMove: move)
         verifyIfShouldAnimate(move: move)
-        
+        game.playRound(withMove: move)
+
         updateInfoFromModel()
     }
     
